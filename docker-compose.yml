@@ -7,8 +7,8 @@ services:
     ports:
       - 8000:80
     environment:
-      - ROUNDCUBEMAIL_DEFAULT_HOST=${ROUNDCUBEMAIL_DEFAULT_HOST}
-      - ROUNDCUBEMAIL_DEFAULT_PORT=${ROUNDCUBEMAIL_DEFAULT_PORT}
+      - ROUNDCUBEMAIL_DEFAULT_HOST=ssl://imap.gmail.com
+      - ROUNDCUBEMAIL_DEFAULT_PORT=993
 
   nginx:
     image: trafex/alpine-nginx-php7:latest
@@ -16,8 +16,3 @@ services:
       - 8080:8080
     volumes:
       - ./:/var/www/html
-
-  composer:
-    image: geshan/php-composer-alpine
-    volumes:
-      - .:/var/www
