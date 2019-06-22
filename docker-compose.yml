@@ -1,0 +1,23 @@
+version: "3.1"
+
+services:
+  roundebounce:
+    image: roundcube/roundcubemail:latest
+    container_name: roundebounce
+    ports:
+      - 8000:80
+    environment:
+      - ROUNDCUBEMAIL_DEFAULT_HOST=${ROUNDCUBEMAIL_DEFAULT_HOST}
+      - ROUNDCUBEMAIL_DEFAULT_PORT=${ROUNDCUBEMAIL_DEFAULT_PORT}
+
+  nginx:
+    image: trafex/alpine-nginx-php7:latest
+    ports:
+      - 8080:8080
+    volumes:
+      - ./:/var/www/html
+
+  composer:
+    image: geshan/php-composer-alpine
+    volumes:
+      - .:/var/www
